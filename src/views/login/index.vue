@@ -138,10 +138,17 @@
         color: #454545;
       }
 
+      ::v-deep .el-input__wrapper {
+        background-color: transparent !important;
+        border: 0px !important;
+        box-shadow: none;
+      }
+
       ::v-deep .el-input {
-        display: inline-block;
+        // display: inline-block;
         height: 47px;
-        width: 85%;
+        //width: 85%;
+        flex: 1;
 
         input {
           background: transparent;
