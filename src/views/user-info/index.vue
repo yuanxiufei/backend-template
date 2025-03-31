@@ -40,9 +40,11 @@
                 >{{ item }}</el-tag
               >
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('msg.userInfo.address')" :span="2">{{
-              detailData.address
-            }}</el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('msg.userInfo.address')"
+              :span="2"
+              >{{ detailData.address }}</el-descriptions-item
+            >
           </el-descriptions>
           <!-- 头像渲染 -->
           <el-image
@@ -83,85 +85,85 @@
 </template>
 
 <script setup>
-  import { userDetail } from '@/api/user-manage'
-  import { watchSwitchLang } from '@/utils/i18n'
-  import { defineProps, ref } from 'vue'
+import { userDetail } from '@/api/user-manage'
+import { watchSwitchLang } from '@/utils/i18n'
+import { defineProps, ref } from 'vue'
 
-  const props = defineProps({
-    id: {
-      type: String,
-      required: true
-    }
-  })
-
-  // 数据相关
-  const detailData = ref({})
-  const getUserDetail = async () => {
-    detailData.value = await userDetail(props.id)
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
   }
-  getUserDetail()
-  // 语言切换
-  watchSwitchLang(getUserDetail)
+})
 
-  // 打印相关
-  const printLoading = ref(false)
-  const printObj = {
-    // 打印区域
-    id: 'userInfoBox',
-    // 打印标题
-    popTitle: 'imooc-vue-element-admin',
-    // 打印前
-    beforeOpenCallback(vue) {
-      printLoading.value = true
-    },
-    // 执行打印
-    openCallback(vue) {
-      printLoading.value = false
-    }
+// 数据相关
+const detailData = ref({})
+const getUserDetail = async () => {
+  detailData.value = await userDetail(props.id)
+}
+getUserDetail()
+// 语言切换
+watchSwitchLang(getUserDetail)
+
+// 打印相关
+const printLoading = ref(false)
+const printObj = {
+  // 打印区域
+  id: 'userInfoBox',
+  // 打印标题
+  popTitle: 'imooc-vue-element-admin',
+  // 打印前
+  beforeOpenCallback(vue) {
+    printLoading.value = true
+  },
+  // 执行打印
+  openCallback(vue) {
+    printLoading.value = false
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .print-box {
-    margin-bottom: 20px;
-    text-align: right;
+.print-box {
+  margin-bottom: 20px;
+  text-align: right;
+}
+.user-info-box {
+  width: 1024px;
+  margin: 0 auto;
+  .title {
+    text-align: center;
+    margin-bottom: 18px;
   }
-  .user-info-box {
-    width: 1024px;
-    margin: 0 auto;
-    .title {
-      text-align: center;
-      margin-bottom: 18px;
+  .header {
+    display: flex;
+    ::v-deep .el-descriptions {
+      flex-grow: 1;
     }
-    .header {
-      display: flex;
-      ::v-deep .el-descriptions {
-        flex-grow: 1;
-      }
-      .avatar {
-        width: 187px;
-        box-sizing: border-box;
-        padding: 30px 20px;
-        border: 1px solid #ebeef5;
-        border-left: none;
-      }
-      .remark {
-        margin-right: 12px;
-      }
+    .avatar {
+      width: 187px;
+      box-sizing: border-box;
+      padding: 30px 20px;
+      border: 1px solid #ebeef5;
+      border-left: none;
     }
-    .body {
-      ul {
-        list-style: none;
-        li {
-          span {
-            margin-right: 62px;
-          }
+    .remark {
+      margin-right: 12px;
+    }
+  }
+  .body {
+    ul {
+      list-style: none;
+      li {
+        span {
+          margin-right: 62px;
         }
       }
     }
-    .foot {
-      margin-top: 42px;
-      text-align: right;
-    }
   }
+  .foot {
+    margin-top: 42px;
+    text-align: right;
+  }
+}
 </style>

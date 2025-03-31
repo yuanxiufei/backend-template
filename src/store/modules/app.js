@@ -19,6 +19,12 @@ export default {
       state.language = lang
     },
     /**
+     * 初始化 tagsList
+     */
+    initTagsViewList(state) {
+      state.tagsViewList = []
+    },
+    /**
      * 添加 tags
      */
     addTagsViewList(state, tag) {
@@ -47,10 +53,16 @@ export default {
         state.tagsViewList.splice(payload.index, 1)
         return
       } else if (payload.type === 'other') {
-        state.tagsViewList.splice(payload.index + 1, state.tagsViewList.length - payload.index + 1)
+        state.tagsViewList.splice(
+          payload.index + 1,
+          state.tagsViewList.length - payload.index + 1
+        )
         state.tagsViewList.splice(0, payload.index)
       } else if (payload.type === 'right') {
-        state.tagsViewList.splice(payload.index + 1, state.tagsViewList.length - payload.index + 1)
+        state.tagsViewList.splice(
+          payload.index + 1,
+          state.tagsViewList.length - payload.index + 1
+        )
       }
       setItem(TAGS_VIEW, state.tagsViewList)
     }

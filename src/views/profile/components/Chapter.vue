@@ -14,18 +14,18 @@
 </template>
 
 <script setup>
-  import { watchSwitchLang } from '@/utils/i18n'
-  import { chapter } from '@/api/user'
-  import { ref } from 'vue'
-  const chapterData = ref([])
+import { watchSwitchLang } from '@/utils/i18n'
+import { chapter } from '@/api/user'
+import { ref } from 'vue'
+const chapterData = ref([])
 
-  const getChapterData = async () => {
-    chapterData.value = await chapter()
-  }
-  getChapterData()
+const getChapterData = async () => {
+  chapterData.value = await chapter()
+}
+getChapterData()
 
-  // 监听语言切换
-  watchSwitchLang(getChapterData)
+// 监听语言切换
+watchSwitchLang(getChapterData)
 </script>
 
 <style lang="scss" scoped></style>

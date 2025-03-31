@@ -1,4 +1,4 @@
-import layout from '@/layout/index.vue'
+import layout from '@/layout'
 
 export default {
   path: '/article',
@@ -10,7 +10,9 @@ export default {
     {
       path: '/article/ranking',
       component: () =>
-        import(/* webpackChunkName: "article-ranking" */ '@/views/article-ranking/index'),
+        import(
+          /* webpackChunkName: "article-ranking" */ '@/views/article-ranking/index'
+        ),
       meta: {
         title: 'articleRanking',
         icon: 'article-ranking'
@@ -19,7 +21,9 @@ export default {
     {
       path: '/article/:id',
       component: () =>
-        import(/* webpackChunkName: "article-ranking" */ '@/views/article-detail/index'),
+        import(
+          /* webpackChunkName: "article-ranking" */ '@/views/article-detail/index'
+        ),
       meta: {
         title: 'articleDetail'
       }

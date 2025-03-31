@@ -90,15 +90,15 @@ export const export_json_to_excel = ({
   // 7. 合并单元格相关（['A1:A2', 'B1:D1', 'E1:E2']）
   if (merges.length > 0) {
     if (!ws['!merges']) ws['!merges'] = []
-    merges.forEach(item => {
+    merges.forEach((item) => {
       ws['!merges'].push(XLSX.utils.decode_range(item))
     })
   }
   // 8. 单元格宽度相关
   if (autoWidth) {
     /*设置 worksheet 每列的最大宽度*/
-    const colWidth = data.map(row =>
-      row.map(val => {
+    const colWidth = data.map((row) =>
+      row.map((val) => {
         /*先判断是否为null/undefined*/
         if (val == null) {
           return {

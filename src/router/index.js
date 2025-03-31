@@ -1,5 +1,9 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import layout from '@/layout/index.vue'
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory
+} from 'vue-router'
+import layout from '@/layout'
 import UserManageRouter from './modules/UserManage'
 import RoleListRouter from './modules/RoleList'
 import PermissionListRouter from './modules/PermissionList'
@@ -24,7 +28,8 @@ export const privateRoutes = [
 export const publicRoutes = [
   {
     path: '/login',
-    component: () => import('@/views/login/index.vue')
+    component: () =>
+      import(/* webpackChunkName: "login" */ '@/views/login/index')
   },
   {
     path: '/',
@@ -34,21 +39,34 @@ export const publicRoutes = [
       {
         path: '/profile',
         name: 'profile',
-        component: () => import(/* webpackChunkName: "profile" */ '@/views/profile/index'),
+        component: () =>
+          import(/* webpackChunkName: "profile" */ '@/views/profile/index'),
         meta: {
           title: 'profile',
-          icon: 'el-icon-user'
+          icon: 'personnel'
+        }
+      },
+      {
+        path: '/chart',
+        name: 'chart',
+        component: () =>
+          import(/* webpackChunkName: "chart" */ '@/views/chart/index'),
+        meta: {
+          title: 'chart',
+          icon: 'chart'
         }
       },
       {
         path: '/404',
         name: '404',
-        component: () => import(/* webpackChunkName: "error-page" */ '@/views/error-page/404')
+        component: () =>
+          import(/* webpackChunkName: "error-page" */ '@/views/error-page/404')
       },
       {
         path: '/401',
         name: '401',
-        component: () => import(/* webpackChunkName: "error-page" */ '@/views/error-page/401')
+        component: () =>
+          import(/* webpackChunkName: "error-page" */ '@/views/error-page/401')
       }
     ]
   }
@@ -64,14 +82,17 @@ export function resetRouter() {
     store.getters.userInfo.permission.menus
   ) {
     const menus = store.getters.userInfo.permission.menus
-    menus.forEach(menu => {
+    menus.forEach((menu) => {
       router.removeRoute(menu)
     })
   }
 }
 
 const router = createRouter({
-  history: process.env.NODE_ENV === 'production' ? createWebHistory() : createWebHashHistory(),
+  history:
+    process.env.NODE_ENV === 'production'
+      ? createWebHistory()
+      : createWebHashHistory(),
   routes: publicRoutes
 })
 

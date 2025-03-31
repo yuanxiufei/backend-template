@@ -12,7 +12,10 @@ export default {
   children: [
     {
       path: '/user/manage',
-      component: () => import(/* webpackChunkName: "user-manage" */ '@/views/user-manage/index'),
+      component: () =>
+        import(
+          /* webpackChunkName: "user-manage" */ '@/views/user-manage/index'
+        ),
       meta: {
         title: 'userManage',
         icon: 'personnel-manage'
@@ -21,7 +24,8 @@ export default {
     {
       path: '/user/info/:id',
       name: 'userInfo',
-      component: () => import(/* webpackChunkName: "user-manage" */ '@/views/user-info/index'),
+      component: () =>
+        import(/* webpackChunkName: "user-manage" */ '@/views/user-info/index'),
       props: true,
       meta: {
         title: 'userInfo'
@@ -30,7 +34,8 @@ export default {
     {
       path: '/user/import',
       name: 'import',
-      component: () => import(/* webpackChunkName: "user-manage" */ '@/views/import/index'),
+      component: () =>
+        import(/* webpackChunkName: "user-manage" */ '@/views/import/index'),
       meta: {
         title: 'excelImport'
       }

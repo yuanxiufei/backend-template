@@ -1,6 +1,11 @@
 <template>
   <!-- 主题图标 v-bind：https://v3.cn.vuejs.org/api/instance-properties.html#attrs -->
-  <el-dropdown v-bind="$attrs" trigger="click" class="theme" @command="handleSetTheme">
+  <el-dropdown
+    v-bind="$attrs"
+    trigger="click"
+    class="theme"
+    @command="handleSetTheme"
+  >
     <div>
       <el-tooltip :content="$t('msg.navBar.themeChange')">
         <svg-icon id="guide-theme" icon="change-theme" />
@@ -21,13 +26,13 @@
 </template>
 
 <script setup>
-  import SelectColor from './components/SelectColor.vue'
-  import { ref } from 'vue'
+import SelectColor from './components/SelectColor.vue'
+import { ref } from 'vue'
 
-  const selectColorVisible = ref(false)
-  const handleSetTheme = command => {
-    selectColorVisible.value = true
-  }
+const selectColorVisible = ref(false)
+const handleSetTheme = (command) => {
+  selectColorVisible.value = true
+}
 </script>
 
 <style lang="scss" scoped></style>

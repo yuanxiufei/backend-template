@@ -10,7 +10,9 @@ export default {
     {
       path: '/user/permission',
       component: () =>
-        import(/* webpackChunkName: "permission-list" */ '@/views/permission-list/index'),
+        import(
+          /* webpackChunkName: "permission-list" */ '@/views/permission-list/index'
+        ),
       meta: {
         title: 'permissionList',
         icon: 'permission'

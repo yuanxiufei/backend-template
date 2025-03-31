@@ -48,6 +48,7 @@ export default {
       resetRouter()
       this.commit('user/setToken', '')
       this.commit('user/setUserInfo', {})
+      this.commit('app/initTagsViewList')
       removeAllItem()
       router.push('/login')
     }

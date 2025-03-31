@@ -5,32 +5,26 @@
 </template>
 
 <script setup>
-  import { useStore } from 'vuex'
-  import { generateNewStyle, writeNewStyle } from '@/utils/theme'
-  import { watchSwitchLang } from '@/utils/i18n'
-  import { onMounted } from 'vue'
-  import { ElConfigProvider } from 'element-plus'
-  import zhCn from 'element-plus/es/locale/lang/zh-cn'
-  import en from 'element-plus/es/locale/lang/en'
+import { useStore } from 'vuex'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
+import { watchSwitchLang } from '@/utils/i18n'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+import en from 'element-plus/lib/locale/lang/en'
+const store = useStore()
+generateNewStyle(store.getters.mainColor).then((newStyleText) => {
+  writeNewStyle(newStyleText)
+})
 
-  const store = useStore()
-  generateNewStyle(store.getters.mainColor).then(newStyleText => {
-    writeNewStyle(newStyleText)
-  })
+/**
+ * 监听 语言变化，重新获取个人信息
+ */
+watchSwitchLang(() => {
+  if (store.getters.token) {
+    store.dispatch('user/getUserInfo')
+  }
+})
 
-  watchSwitchLang(() => {
-    if (store.getters.token) {
-      store.dispatch('user/getUserInfo')
-    }
-  })
-
-  // Move removeChild to onMounted hook
-  onMounted(() => {
-    const toastElement = document.getElementById('m-toast')
-    if (toastElement) {
-      document.body.removeChild(toastElement)
-    }
-  })
+document.body.removeChild(document.getElementById('m-toast'))
 </script>
 
 <style lang="scss"></style>
