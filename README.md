@@ -20,8 +20,8 @@
 - 国际化支持
 - 主题定制
 - 富文本编辑器
-- Excel导入导出
-- Markdown支持
+- Excel 导入导出
+- Markdown 支持
 - 全屏功能
 - 标签页导航
 
@@ -110,6 +110,7 @@ npm run lint
 本项目使用 ESLint + Prettier 进行代码规范和格式化，主要规范包括：
 
 1. **ESLint 规则**
+
    - 使用标准的 Vue3 + JavaScript 规范
    - 生产环境禁用 console 和 debugger
    - 使用单引号
@@ -118,6 +119,7 @@ npm run lint
    - 最大行宽 100 字符
 
 2. **Prettier 格式化规则**
+
    - 不使用分号
    - 使用单引号
    - 每行最大长度为 100
@@ -126,6 +128,7 @@ npm run lint
    - Vue 文件中的 script 和 style 标签保持缩进
 
 3. **代码检查和格式化命令**
+
    ```bash
    # 运行 ESLint 检查
    npm run lint
@@ -158,14 +161,17 @@ npm run lint
 **提交步骤：**
 
 1. 暂存更改：
+
    ```bash
    git add .
    ```
 
 2. 使用规范化提交命令：
+
    ```bash
    npm run commit
    ```
+
    > 注：该命令会引导你填写符合规范的提交信息
 
 3. 提交前会自动运行以下检查：
@@ -182,12 +188,54 @@ npm run lint
 
 ## 构建部署
 
-1. 执行构建命令生成生产环境代码
+### 环境变量配置
+
+项目使用 `.env.*` 文件管理不同环境的配置：
+
+- `.env.development`：开发环境配置
+
+  ```
+  ENV = 'development'
+  VITE_BASE_API = '/api'  # 开发环境API地址
+  ```
+
+- `.env.production`：生产环境配置
+  ```
+  ENV = 'production'
+  VITE_BASE_API = '/prod-api'  # 生产环境API地址
+  ```
+
+> 注：只有以 `VITE_` 为前缀的变量才会暴露给 Vite 处理
+
+### 打包命令
+
+1. 测试环境打包
+
    ```bash
+   # 使用开发环境配置打包
+   npm run build -- --mode development
+   ```
+
+2. 生产环境打包
+   ```bash
+   # 默认使用生产环境配置
    npm run build
    ```
 
-2. 将 `dist` 目录下的文件部署到服务器
+### 打包优化
+
+项目使用 Vite 作为构建工具，已配置以下优化：
+
+- 生产环境自动开启代码压缩
+- 自动分割第三方依赖包
+- 静态资源处理和优化
+- 按需加载和代码分割
+
+### 部署
+
+1. 执行相应环境的打包命令生成部署文件
+2. 将 `dist` 目录下的文件部署到对应环境的服务器
+3. 确保服务器配置了正确的 API 代理规则
 
 ## 浏览器支持
 

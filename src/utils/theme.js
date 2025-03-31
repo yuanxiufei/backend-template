@@ -48,7 +48,9 @@ export const generateColors = primary => {
  * 获取当前 element-plus 的默认样式表
  */
 const getOriginalStyle = async () => {
-  const version = require('element-plus/package.json').version
+  // const version = require('element-plus/package.json').version
+  const pkg = await import('element-plus/package.json', { assert: { type: 'json' } })
+  const version = pkg.default.version
   const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
   const { data } = await axios(url)
   // 把获取到的数据筛选为原样式模板
