@@ -20,10 +20,15 @@ export default defineConfig({
       '/api': {
         // 代理请求之后的请求地址
         target: 'https://api.imooc-admin.lgdsunday.club/',
-        // target: 'https://api.imooc-front.lgdsunday.club/',
         // 跨域
         changeOrigin: true
+        // pathRewrite: {
+        //   '^/api': ''
+        // }
       }
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*'
     }
   },
   resolve: {

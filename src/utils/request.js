@@ -12,6 +12,7 @@ console.log('mport.meta.env', import.meta.env)
 // 请求拦截器
 service.interceptors.request.use(
   config => {
+    config.headers.icode = '2B763EBAF7D926AC'
     // 在这个位置需要统一的去注入token
     if (store.getters.token) {
       if (isCheckTimeout()) {
