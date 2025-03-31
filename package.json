@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "dev": "vite --host --port 3000",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css,vue}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css,vue}\"",
     "prepare": "husky install",
     "commit": "git-cz",
     "lint-staged": "lint-staged"
@@ -42,6 +43,7 @@
     "@babel/preset-env": "7.23.9",
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-conventional": "17.8.1",
+    "@vitejs/plugin-vue": "4.5.2",
     "@vue/cli-plugin-babel": "5.0.8",
     "@vue/cli-plugin-eslint": "5.0.8",
     "@vue/cli-plugin-router": "5.0.8",
@@ -66,6 +68,9 @@
     "sass-loader": "14.1.1",
     "shebang-command": "2.0.0",
     "svg-sprite-loader": "6.0.9",
+    "vite": "4.5.2",
+    "vite-plugin-svg-icons": "2.0.1",
+    "vite-svg-loader": "5.1.0",
     "which": "5.0.0"
   },
   "config": {

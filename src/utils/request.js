@@ -4,10 +4,11 @@ import { ElMessage } from 'element-plus'
 import { isCheckTimeout } from '@/utils/auth'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: import.meta.env.VITE_BASE_API,
   timeout: 5000
 })
 
+console.log('mport.meta.env', import.meta.env)
 // 请求拦截器
 service.interceptors.request.use(
   config => {

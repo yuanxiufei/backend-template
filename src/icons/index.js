@@ -1,13 +1,19 @@
 import SvgIcon from '@/components/SvgIcon'
 
-// https://webpack.docschina.org/guides/dependency-management/#requirecontext
-// 通过 require.context() 函数来创建自己的 context
-const svgRequire = require.context('./svg', false, /\.svg$/)
-// 此时返回一个 require 的函数，可以接受一个 request 的参数，用于 require 的导入。
-// 该函数提供了三个属性，可以通过 require.keys() 获取到所有的 svg 图标
-// 遍历图标，把图标作为 request 传入到 require 导入函数中，完成本地 svg 图标的导入
-svgRequire.keys().forEach(svgIcon => svgRequire(svgIcon))
+// 使用 import.meta.glob 动态导入 SVG 文件
+const svgRequire = import.meta.glob('./svg/*.svg', { eager: true })
+
+// 遍历所有 SVG 文件，动态注册为 Vue 组件
+Object.keys(svgRequire).forEach(key => {
+  // 提取文件名并直接使用（不转为大驼峰）
+  const componentName = key.split('/').pop().replace('.svg', '')
+
+  // 注册每个 SVG 文件作为 Vue 组件
+  // eslint-disable-next-line no-undef
+  app.component(componentName, svgRequire[key].default)
+})
 
 export default app => {
+  // 注册 SvgIcon 组件
   app.component('svg-icon', SvgIcon)
 }

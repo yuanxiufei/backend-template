@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import layout from '@/layout'
+import layout from '@/layout/index.vue'
 import UserManageRouter from './modules/UserManage'
 import RoleListRouter from './modules/RoleList'
 import PermissionListRouter from './modules/PermissionList'
@@ -24,7 +24,7 @@ export const privateRoutes = [
 export const publicRoutes = [
   {
     path: '/login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login/index')
+    component: () => import('@/views/login/index.vue')
   },
   {
     path: '/',
