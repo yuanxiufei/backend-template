@@ -1,5 +1,5 @@
 {
-  "name": "imooc-admin",
+  "name": "backend-template",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -80,6 +80,6 @@
     ]
   },
   "overrides": {
-    "imooc-admin": "0.0.0"
+    "backend-template": "0.0.0"
   }
 }

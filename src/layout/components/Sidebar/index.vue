@@ -7,7 +7,7 @@
         src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png"
       />
       <h1 class="logo-title" v-if="$store.getters.sidebarOpened">
-        imooc-admin
+        backend-template
       </h1>
     </div>
     <el-scrollbar>
